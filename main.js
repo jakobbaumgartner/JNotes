@@ -9,7 +9,7 @@ function createNewNoteModuleLoad () {
     var display = document.getElementById("display")
     var newJNote = document.getElementById("newJNoteButton")
     var newJNoteButton = controls.removeChild(newJNote)
-    if (screen.width < 850) {
+    if (window.innerWidth < 850) {
         document.getElementById("controls").style.height="450px"
     }
     var newNoteForm = '<textarea autofocus id="textpolje" ></textarea><div id="saveButton" onclick="createNewNote()"><p id="newsave">Save</p></div>'
@@ -25,7 +25,7 @@ function createNewNote () {
     var controls = document.getElementById("controls")
     createNewNoteExecute(vsebina)
     counter0++
-    if (screen.width < 850) {
+    if (window.innerWidth < 850) {
         document.getElementById("controls").style.height="80px"
     }
 
