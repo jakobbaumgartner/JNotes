@@ -1,17 +1,21 @@
 
 var notenumber = 0
-
+var greetmessage = true
 var allnotes = {}
 var counter0 = 0
 
 function createNewNoteModuleLoad () {
     var controls = document.getElementById("controls")
+    var display = document.getElementById("display")
     var newJNote = document.getElementById("newJNoteButton")
     var newJNoteButton = controls.removeChild(newJNote)
-
+    if (screen.width < 850) {
+        document.getElementById("controls").style.height="450px"
+    }
     var newNoteForm = '<textarea autofocus id="textpolje" ></textarea><div id="saveButton" onclick="createNewNote()"><p id="newsave">Save</p></div>'
 
     controls.innerHTML += newNoteForm
+    
 
 }
 
@@ -21,8 +25,14 @@ function createNewNote () {
     var controls = document.getElementById("controls")
     createNewNoteExecute(vsebina)
     counter0++
-    
+    if (screen.width < 850) {
+        document.getElementById("controls").style.height="80px"
+    }
 
+    if(greetmessage == true) {
+        display.removeChild(Greeting)
+        greetmessage = false
+        }
 }
 
 function createNewNoteExecute(textvalue) {
@@ -35,7 +45,7 @@ function createNewNoteExecute(textvalue) {
     allnotes[idime] = textvalue
     notenumber++
     novo.setAttribute("id", idime)
-    var innerHTMLe = '<div class="notebutton" onclick="deletethisnote(this.parentNode.id)"><p class="notebuttontext">Delete</p></div><div class="notevalue"><p class="notevaluetext">' + textvalue + '</p></div>'
+    var innerHTMLe = '<div class="noteprint clearfix"><div class="notebutton" onclick="deletethisnote(this.parentNode.parentNode.id)"><p class="notebuttontext">Delete</p></div><div class="notevalue"><p class="notevaluetext">' + textvalue + '</p></div></div>'
     novo.innerHTML = innerHTMLe
     display.insertBefore(novo, display.firstChild)
     var controls = document.getElementById("controls")
